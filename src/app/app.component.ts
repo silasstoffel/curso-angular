@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { PhotoService } from "./components/photos/photo/photo.service";
 
 @Component({
   selector: "app-root",
@@ -8,7 +9,16 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppComponent {
   title = "#Alura Pic";
-  photos = [];
+  photos: Object[] = [];
 
-  constructor(http: HttpClient) {}
+  constructor(private photoService: PhotoService) {
+    this.loadPhotos();
+  }
+
+  private loadPhotos() {
+    this.photoService.listFromUser("flavio").subscribe(
+      (res) => (this.photos = res),
+      (err) => console.error(err.message)
+    );
+  }
 }
