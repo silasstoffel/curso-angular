@@ -1,8 +1,8 @@
 <h1>{{ title }}</h1>
 
-<ap-photo
-  url="https://fotos.jornaldocarro.estadao.com.br/jornal-do-carro/imagens/noticia/aston-martin-vulcan-sale-1.jpg"
-  description="Aston Martin Vulcan">
+<ap-photo *ngFor="let item of photos"
+  [url]="item.url"
+  [description]="item.description">
 </ap-photo>
 
 
