@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Observable } from "rxjs";
+import { Photo } from "./components/photos/photo/photo";
 import { PhotoService } from "./components/photos/photo/photo.service";
 
 @Component({
@@ -9,7 +9,7 @@ import { PhotoService } from "./components/photos/photo/photo.service";
 })
 export class AppComponent {
   title = "#Alura Pic";
-  photos: Object[] = [];
+  photos: Photo[] = [];
 
   constructor(private photoService: PhotoService) {
     this.loadPhotos();
