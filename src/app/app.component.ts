@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Photo } from "./components/photos/photo/photo";
 import { PhotoService } from "./components/photos/photo/photo.service";
 
@@ -7,11 +7,13 @@ import { PhotoService } from "./components/photos/photo/photo.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "#Alura Pic";
   photos: Photo[] = [];
 
-  constructor(private photoService: PhotoService) {
+  constructor(private photoService: PhotoService) {}
+
+  ngOnInit() {
     this.loadPhotos();
   }
 
