@@ -1,4 +1,3 @@
-
 <p class="text-center text-muted" *ngIf="!photos.length">
   Sorry, no photos
 </p>
@@ -6,7 +5,15 @@
 <ol class="list-unstyled row">
   <li *ngFor="let cols of rows" class="row no-gutters">
     <div *ngFor="let item of cols" class="col-4">
-      <ap-photo [url]="item.url" [description]="item.description"></ap-photo>
+
+      <ap-card [title]="item.description">
+        <ap-photo [url]="item.url" [description]="item.description"></ap-photo>
+        <div class="text-center p-1">
+          <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ item.likes }}
+          <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ item.comments }}
+        </div>
+      </ap-card>
+
     </div>
   </li>
 </ol>
