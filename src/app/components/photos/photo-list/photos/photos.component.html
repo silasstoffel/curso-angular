@@ -4,7 +4,8 @@
 
 <ol class="list-unstyled row">
   <li *ngFor="let cols of rows" class="row no-gutters">
-    <div *ngFor="let item of cols" class="col-4">
+    <!-- Você pode definir o valor de escuridão com atributo brightness que receber valor numérico. Default: 70%-->
+    <div *ngFor="let item of cols" class="col-4" dark-on-hover>
 
       <ap-card [title]="item.description">
         <ap-photo [url]="item.url" [description]="item.description"></ap-photo>

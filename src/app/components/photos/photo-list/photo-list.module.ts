@@ -8,9 +8,10 @@ import { filterByDescription } from './filter-by-description.pipe';
 import { PhotoModule } from '../photo/photo.module';
 import { CardModule } from '../../shared/card/card.module';
 import { SearchComponent } from './search/search.component';
+import { DarkOnHoverModule } from '../../shared/directives/dark-on-hover/dark-on-hover.module';
 
 @NgModule({
-  imports: [CommonModule, PhotoModule, CardModule],
+  imports: [CommonModule, PhotoModule, CardModule, DarkOnHoverModule],
   declarations: [
     PhotoListComponent,
     PhotosComponent,
