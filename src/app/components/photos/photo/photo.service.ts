@@ -12,4 +12,8 @@ export class PhotoService {
   listFromUser(username: string):Observable<Photo[]> {
     return this.http.get<Photo[]>(`${API_BASE_URL}/${username}/photos`);
   }
+
+  listFromUserPaginated(username: string, page: number):Observable<Photo[]> {
+    return this.http.get<Photo[]>(`${API_BASE_URL}/${username}/photos?page=${page}`);
+  }
 }
