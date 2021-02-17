@@ -5,8 +5,10 @@ import { PhotoFormComponent } from './components/photos/photo-form/photo-form.co
 import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoListResolver } from './components/photos/photo-list/photo-list.resolver';
+import { SignInComponent } from './components/home/sign-in/sign-in.component';
 
 export const routes: Routes = [
+  { path: '', component: SignInComponent },
   {
     path: 'photos/user/:username',
     component: PhotoListComponent,
