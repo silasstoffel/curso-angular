@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { TokenService } from '../token/token.service';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -7,9 +9,17 @@ const BASE_URL = 'http://localhost:3000';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   authenticate(userName: string, password: string) {
-    return this.http.post(`${BASE_URL}/user/login`, { userName, password });
+    var endpoint = `${BASE_URL}/user/login`;
+    return this.http
+      .post(endpoint, { userName, password }, { observe: 'response' })
+      .pipe(
+        tap((res) => {
+          const accessToken = res.headers.get('x-access-token');
+          this.tokenService.store(accessToken);
+        })
+      );
   }
 }
