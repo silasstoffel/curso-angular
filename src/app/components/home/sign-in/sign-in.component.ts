@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component({
   templateUrl: './sign-in.component.html',
@@ -14,7 +15,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private platformDetectorService: PlatformDetectorService
   ) {}
 
   ngOnInit() {
@@ -31,7 +33,8 @@ export class SignInComponent implements OnInit {
       (res) => this.router.navigateByUrl(`/photos/user/${userName}`),
       (err) => {
         alert('Deu ruim');
-        this.userNameInput.nativeElement.focus();
+        // Verificando a plataforma para poder verificar se é browser
+        this.platformDetectorService.isBrower() && this.userNameInput.nativeElement.focus();
         //this.loginForm.reset();
       }
     );
