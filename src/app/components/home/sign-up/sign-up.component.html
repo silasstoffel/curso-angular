@@ -1,0 +1,69 @@
+<form [formGroup]="signupForm" class="form mt-4" (ngSubmit)="submit()">
+  <div class="form-group">
+      <input formControlName="email" class="form-control" placeholder="email" autofocus>
+      <ap-v-message
+          *ngIf="signupForm.get('email').errors?.required"
+          message="Email is required!">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('email').errors?.email"
+          message="Invalid e-mail">
+      </ap-v-message>
+  </div>
+
+  <div class="form-group">
+      <input formControlName="fullName" class="form-control" placeholder="full name">
+      <ap-v-message
+          *ngIf="signupForm.get('fullName').errors?.required"
+          message="Full name is required!">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('fullName').errors?.minlength"
+          message="Minimum length is 2">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('fullName').errors?.maxlength"
+          message="Maximum length is 40">
+      </ap-v-message>
+  </div>
+
+  <div class="form-group">
+      <input formControlName="userName" class="form-control" placeholder="user name">
+      <ap-v-message
+          *ngIf="signupForm.get('userName').errors?.required"
+          message="Username is required!">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('userName').errors?.minlength"
+          message="Minimum length is 2">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('userName').errors?.maxlength"
+          message="Maximum length is 30">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('userName').errors?.pattern"
+          message="Must be lowercase">
+      </ap-v-message>
+  </div>
+
+  <div class="form-group">
+      <input formControlName="password" type="password" class="form-control" placeholder="password">
+      <ap-v-message
+          *ngIf="signupForm.get('password').errors?.required"
+          message="Password is required!">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('password').errors?.minlength"
+          message="Minimum length is 8">
+      </ap-v-message>
+      <ap-v-message
+          *ngIf="signupForm.get('password').errors?.maxlength"
+          message="Maximum length is 14">
+      </ap-v-message>
+  </div>
+
+  <button class="btn btn-primary btn-block">Register</button>
+
+  <p>Already a user? <a [routerLink]="['']">Sign In!</a></p>
+</form>
