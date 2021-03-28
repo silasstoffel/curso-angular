@@ -8,17 +8,25 @@ import { PhotoListResolver } from './components/photos/photo-list/photo-list.res
 import { SignInComponent } from './components/home/sign-in/sign-in.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { SignUpComponent } from './components/home/sign-up/sign-up.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: SignInComponent,
+    component: HomeComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: SignInComponent,
+      },
+      {
+        path: 'signup',
+        component: SignUpComponent,
+      },
+    ],
   },
-  {
-    path: 'signup',
-    component: SignUpComponent,
-  },
+
   {
     path: 'photos/user/:username',
     component: PhotoListComponent,

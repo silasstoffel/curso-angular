@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 import { lowerCaseValidator } from '../../shared/validators/lower-case-validator';
 import { NewUser } from './new-user';
 import { SignUpService } from './sign-up.service';
@@ -11,12 +12,14 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
 })
 export class SignUpComponent implements OnInit {
   signupForm: FormGroup;
+  @ViewChild('emailInput') emailInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
     private userNotTakenValidatorService: UserNotTakenValidatorService,
     private signUpService: SignUpService,
-    private router: Router
+    private router: Router,
+    private plaformDetector: PlatformDetectorService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,8 @@ export class SignUpComponent implements OnInit {
         ],
       ],
     });
+
+    this.plaformDetector.isBrower() && this.emailInput.nativeElement.focus();
   }
 
   submit() {
